@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ItemCount from "../itemcount/ItemCount";
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         <p className="App-intro">
           Estimate the time to get to the head of a line!
         </p>
+         <ItemCount/>
       </div>
     );
   }

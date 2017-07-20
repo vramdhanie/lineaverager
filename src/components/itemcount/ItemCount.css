@@ -1,0 +1,18 @@
+.ItemCount {
+    width: 20vw;
+    height:20vw;
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    color: #17407c;
+}
+
+.ItemCount__count{
+    font-size: 4em;
+    font-weight: bold;
+}
+
+.ItemCount__subtle {
+    font-size: 0.8em;
+    opacity: 0.8;
+}
