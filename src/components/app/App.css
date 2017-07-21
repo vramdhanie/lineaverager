@@ -22,3 +22,13 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.row {
+  display:flex;
+}
+
+.content {
+  margin: 10px auto;
+  padding:20px;
+  width:90vw;
+}
