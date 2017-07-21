@@ -1,0 +1,14 @@
+.EstimatedTime{
+    flex:2;
+    color: #7c3730;
+}
+
+.EstimatedTime__eta{
+    font-size: 4em;
+    font-weight: bold;
+}
+
+.EstimatedTime__subtle {
+    font-size: 0.8em;
+    opacity: 0.8;
+}
