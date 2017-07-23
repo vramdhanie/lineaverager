@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import ItemCount from "../itemcount/ItemCount";
 import EstimatedTime from "../estimatedtime/estimatedtime";
+import Timer from "../Timer/timer";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
               <div className="row">
                   <ItemCount/>
                   <EstimatedTime/>
+                  <Timer/>
               </div>
           </div>
       </div>

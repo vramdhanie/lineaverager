@@ -1,0 +1,9 @@
+.timer{
+    flex:1;
+}
+
+.timer__time{
+    font-size:3em;
+    font-weight:bold;
+    color: #467c5e;
+}
