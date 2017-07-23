@@ -1,10 +1,9 @@
 .ItemCount {
-    width: 20vw;
-    height:20vw;
     display:flex;
     justify-content: center;
     align-content: center;
     color: #17407c;
+    flex:1;
 }
 
 .ItemCount__count{
