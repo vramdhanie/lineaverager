@@ -1,6 +1,9 @@
 .EstimatedTime{
     flex:2;
     color: #7c3730;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
+    border-radius:4px;
+    margin-top: 5px;
 }
 
 .EstimatedTime__eta{
