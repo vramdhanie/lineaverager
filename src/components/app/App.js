@@ -4,6 +4,7 @@ import './App.css';
 import ItemCount from "../itemcount/ItemCount";
 import EstimatedTime from "../estimatedtime/estimatedtime";
 import Timer from "../Timer/timer";
+import Controls from "../Controls/controls";
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
                   <ItemCount/>
                   <EstimatedTime/>
                   <Timer/>
+                  <Controls/>
               </div>
           </div>
       </div>

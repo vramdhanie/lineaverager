@@ -20,7 +20,7 @@ export default class Timer extends Component {
     }
 
     componentDidMount(){
-        this.timerId = setInterval(()=>this.tick(), 100);
+        this.timerId = setInterval(()=>this.tick(), 30);
     }
 
     componentWillUnmount(){
@@ -29,7 +29,7 @@ export default class Timer extends Component {
 
     tick(){
         this.setState({
-            time: this.state.time + 100
+            time: this.state.time + 30
         });
     }
 }
