@@ -5,6 +5,7 @@ import ItemCount from "../itemcount/ItemCount";
 import EstimatedTime from "../estimatedtime/estimatedtime";
 import Timer from "../Timer/timer";
 import Controls from "../Controls/controls";
+import Laps from "../Laps/laps";
 
 class App extends Component {
   render() {
@@ -12,10 +13,6 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to Line Averager</h2>
-            <p className="App-intro">
-                Estimate the time to get to the head of a line!
-            </p>
         </div>
           <div className="content">
               <div className="row">
@@ -23,6 +20,7 @@ class App extends Component {
                   <EstimatedTime/>
                   <Timer/>
                   <Controls/>
+                  <Laps/>
               </div>
           </div>
       </div>
