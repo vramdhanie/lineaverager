@@ -10,9 +10,9 @@ export default class Controls extends Component {
     render(){
         return (
             <div className="controls">
-                <button className="start">Start</button>
-                <button className="lap">Lap</button>
-                <button className="stop">Stop</button>
+                <a className="start btn">Start</a>
+                <a className="lapBtn btn">Lap</a>
+                <a className="stop btn">Stop</a>
             </div>
         )
     }
