@@ -8,6 +8,7 @@ class ItemCount extends Component {
         this.state = {
             count:0
         }
+
     }
 
     render() {
@@ -15,7 +16,7 @@ class ItemCount extends Component {
             <div className="ItemCount">
                 <div className="ItemCount_inner">
                     <div className="ItemCount__count">{this.state.count}</div>
-                    <div className="ItemCount__subtle">in queue</div>
+                    <div className="ItemCount__subtle">{ this.props.label }</div>
                 </div>
             </div>
         );

@@ -16,7 +16,7 @@ class App extends Component {
         </div>
           <div className="content">
               <div className="row">
-                  <ItemCount/>
+                  <ItemCount label="in queue"/>
                   <EstimatedTime/>
                   <Timer/>
                   <Controls/>
