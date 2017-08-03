@@ -28,8 +28,8 @@ export default class Timer extends Component {
     }
 
     tick(){
-        this.setState({
-            time: this.state.time + 30
-        });
+        this.setState(prevstate => ({
+            time: prevstate.time + 30
+        }));
     }
 }
