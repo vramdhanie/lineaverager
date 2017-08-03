@@ -14,6 +14,8 @@ export const timerReducer = (state = initialState, action) => {
     switch (action.type) {
         case actions.START_TIMER:
             return {...state, timer_state: STATE.RUNNING};
+        case actions.STOP_TIMER:
+            return {...state, timer_state: STATE.PAUSED};
         default:
             return state;
     }

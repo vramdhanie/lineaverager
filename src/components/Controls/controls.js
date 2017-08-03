@@ -15,7 +15,9 @@ export default class Controls extends Component {
         this.props.dispatch( startTimer() );
     }
 
-    onStop(){}
+    onStop(){
+        this.props.dispatch( stopTimer() );
+    }
 
     onLap(){}
 
