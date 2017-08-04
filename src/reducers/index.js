@@ -7,7 +7,8 @@ const STATE = {
 }
 
 export const initialState = {
-    timer_state: STATE.STOPPED
+    timer_state: STATE.STOPPED,
+    time:0
 };
 
 export const timerReducer = (state = initialState, action) => {
@@ -16,6 +17,8 @@ export const timerReducer = (state = initialState, action) => {
             return {...state, timer_state: STATE.RUNNING};
         case actions.STOP_TIMER:
             return {...state, timer_state: STATE.PAUSED};
+        case actions.INCREMENT_TIME:
+            return {...state, time: action.time}
         default:
             return state;
     }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import './controls.css';
-import { startTimer } from "../../actions/index"
+import {incrementTime, startTimer} from "../../actions/index"
 
 export default class Controls extends Component {
     constructor(props){
@@ -13,13 +13,19 @@ export default class Controls extends Component {
 
     onStart(){
         this.props.dispatch( startTimer() );
+        this.timerId = setInterval(()=>this.tick(), 30);
     }
 
     onStop(){
         this.props.dispatch( stopTimer() );
+        clearInterval(this.timerId);
     }
 
     onLap(){}
+
+    tick(){
+        this.props.dispatch( incrementTime(this.state.time + 30) );
+    }
 
     render(){
         return (
