@@ -9,8 +9,6 @@
     margin-top:5px;
 }
 
-
-
 .controls .btn {
 
     font-size:1.0em;
@@ -29,4 +27,12 @@
 .controls .btn:active {
     position:relative;
     top:1px;
+}
+
+.controls .disable {
+    color:#999999;
+}
+
+.controls .disable:hover {
+    text-shadow: 0px 1px 1px #3D768A;
 }

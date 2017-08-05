@@ -1,6 +1,6 @@
 import * as actions from '../actions';
 
-const STATE = {
+export const STATE = {
     RUNNING:'RUNNING',
     STOPPED:'STOPPED',
     PAUSED:'PAUSED'

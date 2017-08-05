@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './controls.css';
-import {incrementTime, startTimer, stopTimer} from "../../actions/index"
+import {incrementTime, startTimer, stopTimer} from "../../actions/index";
+import { STATE } from '../../reducers/index';
 
 export class Controls extends Component {
     constructor(props){
@@ -13,8 +14,10 @@ export class Controls extends Component {
     }
 
     onStart(){
-        this.props.dispatch( startTimer() );
-        this.timerId = setInterval(()=>this.tick(), 30);
+        if(this.props.timer_state !== STATE.RUNNING) {
+            this.props.dispatch(startTimer());
+            this.timerId = setInterval(() => this.tick(), 30);
+        }
     }
 
     onStop(){
@@ -29,9 +32,10 @@ export class Controls extends Component {
     }
 
     render(){
+        const action_btn = 'start btn' + (this.props.timer_state === STATE.RUNNING ? ' disable' : '');
         return (
             <div className="controls">
-                <a className="start btn" onClick={this.onStart}>Start</a>
+                <a className={action_btn} onClick={this.onStart}>Start</a>
                 <a className="lapBtn btn" onClick={this.onLap}>Lap</a>
                 <a className="stop btn" onClick={this.onStop}>Stop</a>
             </div>
@@ -40,7 +44,8 @@ export class Controls extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    time: state.time
+    time: state.time,
+    timer_state: state.timer_state
 });
 
 export default connect(mapStateToProps)(Controls);
