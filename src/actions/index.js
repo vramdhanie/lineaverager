@@ -9,7 +9,7 @@ export const stopTimer = () => ({
 });
 
 export const INCREMENT_TIME = 'INCREMENT_TIME';
-export const incrementTime = (time) = ({
+export const incrementTime = (time) => ({
     type: INCREMENT_TIME,
     time:time
 });
