@@ -8,7 +8,8 @@ export const STATE = {
 
 export const initialState = {
     timer_state: STATE.STOPPED,
-    time:0
+    time:0,
+    laps:[]
 };
 
 export const timerReducer = (state = initialState, action) => {
@@ -18,7 +19,11 @@ export const timerReducer = (state = initialState, action) => {
         case actions.STOP_TIMER:
             return {...state, timer_state: STATE.PAUSED};
         case actions.INCREMENT_TIME:
-            return {...state, time: action.time}
+            return {...state, time: action.time};
+        case actions.LAP:
+            let laps = state.laps.slice(0);
+            laps.push(action.lap_time)
+            return {...state, laps: laps}
         default:
             return state;
     }

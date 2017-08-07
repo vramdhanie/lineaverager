@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './controls.css';
-import {incrementTime, startTimer, stopTimer} from "../../actions/index";
+import {incrementTime, startTimer, stopTimer, lap} from "../../actions/index";
 import { STATE } from '../../reducers/index';
 
 export class Controls extends Component {
@@ -25,7 +25,9 @@ export class Controls extends Component {
         clearInterval(this.timerId);
     }
 
-    onLap(){}
+    onLap(){
+        this.props.dispatch( lap(this.props.time) );
+    }
 
     tick(){
         this.props.dispatch( incrementTime(this.props.time + 30) );
@@ -45,7 +47,8 @@ export class Controls extends Component {
 
 const mapStateToProps = (state) => ({
     time: state.time,
-    timer_state: state.timer_state
+    timer_state: state.timer_state,
+    laps: state.laps
 });
 
 export default connect(mapStateToProps)(Controls);
