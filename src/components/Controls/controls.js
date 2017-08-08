@@ -26,7 +26,9 @@ export class Controls extends Component {
     }
 
     onLap(){
-        this.props.dispatch( lap(this.props.time) );
+        if(this.props.timer_state === STATE.RUNNING) {
+            this.props.dispatch(lap(this.props.time));
+        }
     }
 
     tick(){
@@ -35,10 +37,11 @@ export class Controls extends Component {
 
     render(){
         const action_btn = 'start btn' + (this.props.timer_state === STATE.RUNNING ? ' disable' : '');
+        const lap_btn = 'lapBtn btn' + (this.props.timer_state === STATE.RUNNING ? '' : ' disable');
         return (
             <div className="controls">
                 <a className={action_btn} onClick={this.onStart}>Start</a>
-                <a className="lapBtn btn" onClick={this.onLap}>Lap</a>
+                <a className={lap_btn} onClick={this.onLap}>Lap</a>
                 <a className="stop btn" onClick={this.onStop}>Stop</a>
             </div>
         )
