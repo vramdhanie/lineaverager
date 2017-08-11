@@ -11,7 +11,7 @@ export class Laps extends Component {
 
     render(){
 
-        const laps = this.props.laps.map((lap, i)=><Lap key={i} number={i + 1} time={lap} duration={lap}/>);
+        const laps = this.props.laps.map(lap => <Lap key={lap.number} {...lap}/>);
 
         return (
             <div className="laps">

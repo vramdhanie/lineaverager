@@ -27,7 +27,10 @@ export class Controls extends Component {
 
     onLap(){
         if(this.props.timer_state === STATE.RUNNING) {
-            this.props.dispatch(lap(this.props.time));
+            let currentTime = this.props.time;
+            let previousTime = this.props.laps.length?this.props.laps[this.props.laps.length - 1].time:0;
+            let number = this.props.laps.length + 1;
+            this.props.dispatch(lap({time:currentTime, duration:currentTime - previousTime, number: number}));
         }
     }
 

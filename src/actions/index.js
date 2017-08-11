@@ -15,7 +15,7 @@ export const incrementTime = (time) => ({
 });
 
 export const LAP = 'LAP';
-export const lap = (lap_time) => ({
+export const lap = (lap) => ({
     type: LAP,
-    lap_time:lap_time
+    lap:lap
 });

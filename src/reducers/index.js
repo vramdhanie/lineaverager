@@ -22,7 +22,7 @@ export const timerReducer = (state = initialState, action) => {
             return {...state, time: action.time};
         case actions.LAP:
             let laps = state.laps.slice(0);
-            laps.push(action.lap_time)
+            laps.push(action.lap)
             return {...state, laps: laps}
         default:
             return state;
