@@ -58,9 +58,7 @@ export class Controls extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    time: state.time,
-    timer_state: state.timer_state,
-    laps: state.laps
+    ...state
 });
 
 export default connect(mapStateToProps)(Controls);

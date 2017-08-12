@@ -36,6 +36,16 @@
     flex:1;
 }
 
+.ItemCount__controls-up-arrow {
+    width: 20px;
+    cursor:pointer;
+}
+
+.ItemCount__controls-down-arrow {
+    width: 20px;
+    cursor:pointer;
+}
+
 .ItemCount__count-input {
     font-size: 1.2em;
     width: 100%;
