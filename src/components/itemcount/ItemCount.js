@@ -1,21 +1,43 @@
 import React, { Component } from 'react';
 import './ItemCount.css';
+import {connect} from "react-redux";
+import { setCount } from "../../actions/index";
 
 class ItemCount extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            count:0
+            edit:false
         }
-
+        this.toggleEdit = this.toggleEdit.bind(this);
     }
 
+    toggleEdit(){
+        this.setState((prev)=>({
+            edit: !prev.edit
+        }))
+    }
+
+    onChange(count){
+        this.props.dispatch( setCount(count) );
+    }
+
+
     render() {
+        let elem;
+        if(this.state.edit){
+            elem = (<div className="ItemCount__count">
+                <input className="ItemCount__count-input" type="number" step="1" defaultValue={this.props.count} onChange={event => this.onChange(event.target.value)}/>
+                <button onClick={this.toggleEdit}>Save</button>
+            </div>)
+        }else{
+            elem = <div className="ItemCount__count" onClick={this.toggleEdit}>{this.props.count}</div>
+        }
         return (
             <div className="ItemCount">
                 <div className="ItemCount_inner">
-                    <div className="ItemCount__count">{this.state.count}</div>
+                    {elem}
                     <div className="ItemCount__subtle">{ this.props.label }</div>
                 </div>
             </div>
@@ -23,6 +45,9 @@ class ItemCount extends Component {
     }
 }
 
+const mapStateToProps = (state) => ({
+  count: state.count
+})
 
 
-export default ItemCount;
+export default connect(mapStateToProps)(ItemCount);

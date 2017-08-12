@@ -9,7 +9,8 @@ export const STATE = {
 export const initialState = {
     timer_state: STATE.STOPPED,
     time:0,
-    laps:[]
+    laps:[],
+    count:0
 };
 
 export const timerReducer = (state = initialState, action) => {
@@ -23,7 +24,9 @@ export const timerReducer = (state = initialState, action) => {
         case actions.LAP:
             let laps = state.laps.slice(0);
             laps.push(action.lap)
-            return {...state, laps: laps}
+            return {...state, laps: laps};
+        case actions.SET_COUNT:
+            return {...state, count:action.count};
         default:
             return state;
     }

@@ -15,6 +15,11 @@
     font-weight: bold;
 }
 
+.ItemCount__count-input {
+    font-size: 1.2em;
+    width: 100%;
+}
+
 .ItemCount__subtle {
     font-size: 0.8em;
     opacity: 0.8;
