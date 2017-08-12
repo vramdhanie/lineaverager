@@ -7,22 +7,8 @@ class ItemCount extends Component {
 
     constructor(props){
         super(props);
-        this.state = {
-            edit:false
-        }
-        this.toggleEdit = this.toggleEdit.bind(this);
         this.up = this.up.bind(this);
         this.down = this.down.bind(this);
-    }
-
-    toggleEdit(){
-        this.setState((prev)=>({
-            edit: !prev.edit
-        }))
-    }
-
-    onChange(count){
-        this.props.dispatch( setCount(count) );
     }
 
     up(){
@@ -33,22 +19,10 @@ class ItemCount extends Component {
         this.props.dispatch( decrementCount() );
     }
 
-
-
     render() {
-        let elem;
-        if(this.state.edit){
-            elem = (<div className="ItemCount__count">
-                <input
-                    className="ItemCount__count-input"
-                    type="number" step="1"
-                    defaultValue={this.props.count}
-                    onChange={event => this.onChange(event.target.value)}/>
-                <button onClick={this.toggleEdit}>Save</button>
-            </div>)
-        }else{
-            elem = <div className="ItemCount__count" onClick={this.toggleEdit}>{this.props.count}</div>
-        }
+
+        const dn = this.props.count?<div className="ItemCount__controls-down" onClick={this.down}>DN</div>:''
+
         return (
             <div className="ItemCount">
                 <div className="ItemCount_inner">
@@ -56,7 +30,7 @@ class ItemCount extends Component {
                         <div className="ItemCount__count" onClick={this.toggleEdit}>{this.props.count}</div>
                         <div className="ItemCount__controls">
                             <div className="ItemCount__controls-up" onClick={this.up}>UP</div>
-                            <div className="ItemCount__controls-down" onClick={this.down}>DN</div>
+                            {dn}
                         </div>
                     </div>
 
