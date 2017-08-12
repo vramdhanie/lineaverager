@@ -25,3 +25,8 @@ export const setCount = (count) => ({
     type:SET_COUNT,
     count
 });
+
+export const DECREMENT_COUNT = 'DECREMENT_COUNT';
+export const decrementCount = () => ({
+    type: DECREMENT_COUNT
+});
