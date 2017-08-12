@@ -17,6 +17,7 @@ class App extends Component {
       this.history = createHistory();
   }
   render() {
+      const controls = this.props.count > 0?<Controls/>:'';
     return (
         <Router history={this.history}>
           <div className="App">
@@ -28,7 +29,7 @@ class App extends Component {
                       <ItemCount label="in queue"/>
                       <EstimatedTime/>
                       <Timer/>
-                      <Controls/>
+                      {controls}
                       <Laps/>
                   </div>
               </div>

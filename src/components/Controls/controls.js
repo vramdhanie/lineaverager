@@ -35,6 +35,11 @@ export class Controls extends Component {
         }
     }
 
+    componentWillUnmount(){
+        this.props.dispatch( stopTimer() );
+        clearInterval(this.timerId);
+    }
+
     tick(){
         this.props.dispatch( incrementTime(this.props.time + 30) );
     }
