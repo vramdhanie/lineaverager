@@ -29,6 +29,8 @@ export const timerReducer = (state = initialState, action) => {
             return {...state, count:action.count};
         case actions.DECREMENT_COUNT:
             return {...state, count: state.count - 1};
+        case actions.INCREMENT_COUNT:
+            return {...state, count: state.count + 1};
         default:
             return state;
     }

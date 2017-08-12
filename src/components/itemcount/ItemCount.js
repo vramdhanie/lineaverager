@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './ItemCount.css';
 import {connect} from "react-redux";
-import { setCount } from "../../actions/index";
+import { incrementCount, decrementCount } from "../../actions/index";
 
 class ItemCount extends Component {
 
@@ -11,6 +11,8 @@ class ItemCount extends Component {
             edit:false
         }
         this.toggleEdit = this.toggleEdit.bind(this);
+        this.up = this.up.bind(this);
+        this.down = this.down.bind(this);
     }
 
     toggleEdit(){
@@ -22,6 +24,15 @@ class ItemCount extends Component {
     onChange(count){
         this.props.dispatch( setCount(count) );
     }
+
+    up(){
+        this.props.dispatch( incrementCount() );
+    }
+
+    down(){
+        this.props.dispatch( decrementCount() );
+    }
+
 
 
     render() {
@@ -44,8 +55,8 @@ class ItemCount extends Component {
                     <div className="ItemCount__mainbox">
                         <div className="ItemCount__count" onClick={this.toggleEdit}>{this.props.count}</div>
                         <div className="ItemCount__controls">
-                            <div className="ItemCount__controls-up">UP</div>
-                            <div className="ItemCount__controls-down">DN</div>
+                            <div className="ItemCount__controls-up" onClick={this.up}>UP</div>
+                            <div className="ItemCount__controls-down" onClick={this.down}>DN</div>
                         </div>
                     </div>
 
