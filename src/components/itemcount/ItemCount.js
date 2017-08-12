@@ -28,7 +28,11 @@ class ItemCount extends Component {
         let elem;
         if(this.state.edit){
             elem = (<div className="ItemCount__count">
-                <input className="ItemCount__count-input" type="number" step="1" defaultValue={this.props.count} onChange={event => this.onChange(event.target.value)}/>
+                <input
+                    className="ItemCount__count-input"
+                    type="number" step="1"
+                    defaultValue={this.props.count}
+                    onChange={event => this.onChange(event.target.value)}/>
                 <button onClick={this.toggleEdit}>Save</button>
             </div>)
         }else{
@@ -37,7 +41,14 @@ class ItemCount extends Component {
         return (
             <div className="ItemCount">
                 <div className="ItemCount_inner">
-                    {elem}
+                    <div className="ItemCount__mainbox">
+                        <div className="ItemCount__count" onClick={this.toggleEdit}>{this.props.count}</div>
+                        <div className="ItemCount__controls">
+                            <div className="ItemCount__controls-up">UP</div>
+                            <div className="ItemCount__controls-down">DN</div>
+                        </div>
+                    </div>
+
                     <div className="ItemCount__subtle">{ this.props.label }</div>
                 </div>
             </div>
