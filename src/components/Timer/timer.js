@@ -5,10 +5,6 @@ import moment from 'moment';
 import './timer.css';
 
 export class Timer extends Component {
-    constructor(props){
-        super(props);
-    }
-
     render(){
         return (
             <div className="timer">

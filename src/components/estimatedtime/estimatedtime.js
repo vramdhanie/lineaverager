@@ -4,9 +4,6 @@ import './estimatedtime.css';
 import moment from 'moment';
 
 export class EstimatedTime extends Component{
-    constructor(props){
-        super(props);
-    }
 
     render(){
         return (

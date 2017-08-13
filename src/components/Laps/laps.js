@@ -5,10 +5,6 @@ import Lap from '../Lap/lap';
 
 export class Laps extends Component {
 
-    constructor(props){
-        super(props);
-    }
-
     render(){
 
         const laps = this.props.laps.map(lap => <Lap key={lap.number} {...lap}/>);
