@@ -35,3 +35,9 @@ export const INCREMENT_COUNT = 'INCREMENT_COUNT';
 export const incrementCount = () => ({
     type: INCREMENT_COUNT
 });
+
+export const SET_MEAN = 'SET_MEAN';
+export const setMean = (mean) => ({
+    type:SET_MEAN,
+    mean
+});

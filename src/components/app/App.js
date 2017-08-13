@@ -9,6 +9,7 @@ import EstimatedTime from "../estimatedtime/estimatedtime";
 import Timer from "../Timer/timer";
 import Controls from "../Controls/controls";
 import Laps from "../Laps/laps";
+import Transition from 'react-transition-group/Transition';
 
 class App extends Component {
 

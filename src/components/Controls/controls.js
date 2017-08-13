@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './controls.css';
-import {incrementTime, startTimer, stopTimer, lap, decrementCount} from "../../actions/index";
+import {
+    incrementTime,
+    startTimer,
+    stopTimer,
+    lap,
+    decrementCount,
+    setMean
+    } from "../../actions/index";
 import { STATE } from '../../reducers/index';
 
 export class Controls extends Component {
@@ -32,6 +39,9 @@ export class Controls extends Component {
             let number = this.props.laps.length + 1;
             this.props.dispatch(lap({time:currentTime, duration:currentTime - previousTime, number: number}));
             this.props.dispatch( decrementCount() );
+
+            const avg = this.props.laps.reduce((a, c)=> a + c, 0) / this.props.laps.length;
+            this.props.dispatch( setMean(avg) );
         }
     }
 
