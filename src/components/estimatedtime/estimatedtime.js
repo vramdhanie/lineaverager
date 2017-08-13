@@ -1,20 +1,32 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './estimatedtime.css';
+import moment from 'moment';
 
-export default class EstimatedTime extends Component{
+export class EstimatedTime extends Component{
     constructor(props){
         super(props);
-        this.state = {
-            eta: "13:56:12"
-        }
     }
 
     render(){
         return (
             <div className="EstimatedTime">
                 <div className="EstimatedTime__subtle">Estimated Time of Arrival</div>
-                <div className="EstimatedTime__eta">{this.state.eta}</div>
+                <div className="EstimatedTime__eta">
+                    {this.props.eta?moment(this.props.eta).format('HH:mm:ss'):''}
+                </div>
+                <div className="EstimatedTime__subtle">
+                    {moment(this.props.mean).format('mm:ss:SS')} average
+                </div>
             </div>
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    laps: state.laps,
+    eta: state.eta,
+    mean: state.mean
+});
+
+export default connect(mapStateToProps)(EstimatedTime);

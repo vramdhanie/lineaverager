@@ -8,9 +8,11 @@ import {
     stopTimer,
     lap,
     decrementCount,
-    setMean
+    setMean,
+    setEta
     } from "../../actions/index";
 import { STATE } from '../../reducers/index';
+import moment from 'moment';
 
 export class Controls extends Component {
     constructor(props){
@@ -40,8 +42,14 @@ export class Controls extends Component {
             this.props.dispatch(lap({time:currentTime, duration:currentTime - previousTime, number: number}));
             this.props.dispatch( decrementCount() );
 
-            const avg = this.props.laps.reduce((a, c)=> a + c, 0) / this.props.laps.length;
+            const avg = currentTime / (this.props.laps.length + 1);
             this.props.dispatch( setMean(avg) );
+
+            const wait = avg * (this.props.count - 1);
+            const eta = moment().add(wait, 'ms');
+
+            this.props.dispatch( setEta(eta) );
+
         }
     }
 

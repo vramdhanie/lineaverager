@@ -11,7 +11,8 @@ export const initialState = {
     time:0,
     laps:[],
     count:0,
-    mean:0
+    mean:0,
+    eta:0
 };
 
 export const timerReducer = (state = initialState, action) => {
@@ -34,6 +35,8 @@ export const timerReducer = (state = initialState, action) => {
             return {...state, count: state.count + 1};
         case actions.SET_MEAN:
             return {...state, mean: action.mean};
+        case actions.SET_ETA:
+            return {...state, eta: action.eta}
         default:
             return state;
     }

@@ -41,3 +41,9 @@ export const setMean = (mean) => ({
     type:SET_MEAN,
     mean
 });
+
+export const SET_ETA = 'SET_ETA';
+export const setEta = (eta) => ({
+    type: SET_ETA,
+    eta
+})
