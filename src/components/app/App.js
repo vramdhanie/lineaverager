@@ -9,7 +9,6 @@ import EstimatedTime from "../estimatedtime/estimatedtime";
 import Timer from "../Timer/timer";
 import Controls from "../Controls/controls";
 import Laps from "../Laps/laps";
-import Transition from 'react-transition-group/Transition';
 
 class App extends Component {
 
@@ -17,8 +16,10 @@ class App extends Component {
       super(props);
       this.history = createHistory();
   }
+
   render() {
       const controls = this.props.count > 0?<Controls/>:'';
+
     return (
         <Router history={this.history}>
           <div className="App">
