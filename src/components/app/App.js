@@ -19,6 +19,7 @@ class App extends Component {
 
   render() {
       const controls = this.props.count > 0?<Controls/>:'';
+      const eta = this.props.eta ? <EstimatedTime/>:'';
 
     return (
         <Router history={this.history}>
@@ -29,7 +30,7 @@ class App extends Component {
               <div className="content">
                   <div className="row">
                       <ItemCount label="in queue"/>
-                      <EstimatedTime/>
+                      {eta}
                       <Timer/>
                       {controls}
                       <Laps/>
