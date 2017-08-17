@@ -22,11 +22,6 @@
   to { transform: rotate(360deg); }
 }
 
-.row {
-  display:flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
 
 .content {
   margin: 10px auto;

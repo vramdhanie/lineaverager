@@ -9,6 +9,7 @@ import EstimatedTime from "../estimatedtime/estimatedtime";
 import Timer from "../Timer/timer";
 import Controls from "../Controls/controls";
 import Laps from "../Laps/laps";
+import {Container, Row, Col, Jumbotron} from 'reactstrap';
 
 class App extends Component {
 
@@ -24,18 +25,36 @@ class App extends Component {
     return (
         <Router history={this.history}>
           <div className="App">
-            <div className="App-header">
+            <Jumbotron>
               <img src={logo} className="App-logo" alt="logo" />
-            </div>
-              <div className="content">
-                  <div className="row">
-                      <ItemCount label="in queue"/>
-                      {eta}
-                      <Timer/>
-                      {controls}
-                      <Laps/>
-                  </div>
-              </div>
+            </Jumbotron>
+              <Container>
+                  <Row>
+                      <Col>
+                        <ItemCount label="in queue"/>
+                      </Col>
+                  </Row>
+                  <Row>
+                      <Col>
+                        {eta}
+                      </Col>
+                  </Row>
+                  <Row>
+                      <Col>
+                        <Timer/>
+                      </Col>
+                  </Row>
+                  <Row>
+                      <Col>
+                        {controls}
+                      </Col>
+                  </Row>
+                  <Row>
+                      <Col>
+                        <Laps/>
+                      </Col>
+                  </Row>
+              </Container>
           </div>
         </Router>
     );
