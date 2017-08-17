@@ -4,6 +4,8 @@ import {connect} from "react-redux";
 import { incrementCount, decrementCount } from "../../actions/index";
 import upArrow from './up.svg';
 import downArrow from './down.svg';
+import { Container, Row, Col, ButtonGroup, Button, Card } from 'reactstrap';
+
 
 class ItemCount extends Component {
 
@@ -23,26 +25,28 @@ class ItemCount extends Component {
 
     render() {
 
-        const dn = this.props.count?(
-            <div className="ItemCount__controls-down" onClick={this.down}>
-                <img src={downArrow} className="ItemCount__controls-down-arrow" alt="DN" />
-            </div>):''
-
         return (
             <div className="ItemCount">
-                <div className="ItemCount_inner">
-                    <div className="ItemCount__mainbox">
-                        <div className="ItemCount__count">{this.props.count}</div>
-                        <div className="ItemCount__controls">
-                            <div className="ItemCount__controls-up" onClick={this.up}>
-                                <img src={upArrow} className="ItemCount__controls-up-arrow" alt="UP" />
-                            </div>
-                            {dn}
-                        </div>
-                    </div>
+                <Container>
+                    <Row noGutters>
+                        <Col xs={{size:3, offset: 4}}>
 
-                    <div className="ItemCount__subtle">{ this.props.label }</div>
-                </div>
+                                <div className="ItemCount__count">{this.props.count}</div>
+
+                        </Col>
+                        <Col xs={{size:3}}>
+                            <ButtonGroup vertical>
+                                <Button onClick={this.up}>UP</Button>
+                                <Button onClick={this.down}>DN</Button>
+                            </ButtonGroup>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <div className="ItemCount__subtle">{ this.props.label }</div>
+                        </Col>
+                    </Row>
+                </Container>
             </div>
         );
     }
