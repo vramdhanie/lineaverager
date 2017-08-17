@@ -5,50 +5,13 @@
     color: #17407c;
     flex:1;
 
-    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
-    border-radius:4px;
     margin-top: 5px;
 }
-
-.ItemCount__mainbox {
-    display: flex;
-}
-
 
 .ItemCount__count{
     flex:1;
     font-size: 4em;
     font-weight: bold;
-}
-
-.ItemCount__controls {
-    flex:1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.ItemCount__controls-up {
-    flex:1;
-}
-.ItemCount__controls-down {
-    flex:1;
-}
-
-.ItemCount__controls-up-arrow {
-    width: 20px;
-    cursor:pointer;
-}
-
-.ItemCount__controls-down-arrow {
-    width: 20px;
-    cursor:pointer;
-}
-
-.ItemCount__count-input {
-    font-size: 1.2em;
-    width: 100%;
 }
 
 .ItemCount__subtle {
