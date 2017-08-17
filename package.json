@@ -2,10 +2,12 @@
   "name": "averager",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://vramdhanie.github.io/lineaverager",
   "dependencies": {
     "bootstrap": "4.0.0-alpha.6",
     "enzyme": "^2.9.1",
     "font-awesome": "^4.7.0",
+    "gh-pages": "^1.0.0",
     "jest-enzyme": "^3.6.1",
     "moment": "^2.18.1",
     "react": "^15.6.1",
@@ -27,6 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy":"npm run build",
+    "deploy":"gh-pages -d build"
   }
 }
