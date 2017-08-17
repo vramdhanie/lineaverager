@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import './ItemCount.css';
 import {connect} from "react-redux";
 import { incrementCount, decrementCount } from "../../actions/index";
-import upArrow from './up.svg';
-import downArrow from './down.svg';
 import {
-    Container, Row, Col, ButtonGroup, Button, Card, InputGroup, InputGroupButton,
+    Container, Row, Col, Button, InputGroup, InputGroupButton,
     InputGroupAddon
 } from 'reactstrap';
 

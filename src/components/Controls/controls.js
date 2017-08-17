@@ -13,7 +13,7 @@ import {
     } from "../../actions/index";
 import { STATE } from '../../reducers/index';
 import moment from 'moment';
-import { Button } from 'reactstrap';
+import {Button, ButtonGroup} from 'reactstrap';
 
 export class Controls extends Component {
     constructor(props){
@@ -64,13 +64,15 @@ export class Controls extends Component {
     }
 
     render(){
-        const action_btn = 'start btn' + (this.props.timer_state === STATE.RUNNING ? ' disable' : '');
-        const lap_btn = 'lapBtn btn' + (this.props.timer_state === STATE.RUNNING ? '' : ' disable');
+        const start_btn_state = {disabled: (this.props.timer_state === STATE.RUNNING ? 'disabled' : '')};
+        const lap_btn_state = {disabled:(this.props.timer_state === STATE.RUNNING ? '' : 'disabled')};
         return (
             <div className="controls">
-                <Button outline color="primary" onClick={this.onStart}>Start</Button>
-                <Button outline onClick={this.onLap}>Lap</Button>
-                <Button outline onClick={this.onStop}>Stop</Button>
+                <ButtonGroup size="lg">
+                  <Button {...start_btn_state} onClick={this.onStart}>Start</Button>
+                  <Button {...lap_btn_state} onClick={this.onLap}>Lap</Button>
+                  <Button {...lap_btn_state} onClick={this.onStop}>Stop</Button>
+                </ButtonGroup>
             </div>
         )
     }
