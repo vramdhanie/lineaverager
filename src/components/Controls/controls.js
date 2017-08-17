@@ -64,8 +64,8 @@ export class Controls extends Component {
     }
 
     render(){
-        const start_btn_state = {disabled: (this.props.timer_state === STATE.RUNNING ? 'disabled' : '')};
-        const lap_btn_state = {disabled:(this.props.timer_state === STATE.RUNNING ? '' : 'disabled')};
+        const start_btn_state = {disabled: this.props.timer_state === STATE.RUNNING};
+        const lap_btn_state = {disabled: this.props.timer_state !== STATE.RUNNING};
         return (
             <div className="controls">
                 <ButtonGroup size="lg">
