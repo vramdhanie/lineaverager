@@ -13,6 +13,7 @@ import {
     } from "../../actions/index";
 import { STATE } from '../../reducers/index';
 import moment from 'moment';
+import { Button } from 'reactstrap';
 
 export class Controls extends Component {
     constructor(props){
@@ -67,9 +68,9 @@ export class Controls extends Component {
         const lap_btn = 'lapBtn btn' + (this.props.timer_state === STATE.RUNNING ? '' : ' disable');
         return (
             <div className="controls">
-                <a className={action_btn} onClick={this.onStart}>Start</a>
-                <a className={lap_btn} onClick={this.onLap}>Lap</a>
-                <a className="stop btn" onClick={this.onStop}>Stop</a>
+                <Button outline color="primary" onClick={this.onStart}>Start</Button>
+                <Button outline onClick={this.onLap}>Lap</Button>
+                <Button outline onClick={this.onStop}>Stop</Button>
             </div>
         )
     }
