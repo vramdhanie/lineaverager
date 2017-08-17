@@ -5,7 +5,7 @@ in the line, and continuously update the estimated length of time it takes
 by using the mean time between exits.
 
 ## Documentation 
-
+You can see this app in action [here](https://vramdhanie.github.com/lineaverager). Note however that at the moment it is optimized for mobile screens.
 
 ## Acknowledgement
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
