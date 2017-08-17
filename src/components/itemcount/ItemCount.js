@@ -6,6 +6,8 @@ import {
     Container, Row, Col, Button, InputGroup, InputGroupButton,
     InputGroupAddon
 } from 'reactstrap';
+import FontAwesome from 'react-fontawesome';
+
 
 
 class ItemCount extends Component {
@@ -26,6 +28,8 @@ class ItemCount extends Component {
 
     render() {
 
+        const disabled = {disabled:this.props.count === 0};
+
         return (
             <div className="ItemCount">
                 <Container>
@@ -33,14 +37,16 @@ class ItemCount extends Component {
                         <Col md={{size:4, offset: 4}}>
                             <InputGroup>
                                 <InputGroupButton>
-                                    <Button onClick={this.up}>UP</Button>
+                                    <Button onClick={this.up}>
+                                        <FontAwesome name="chevron-up"/>
+                                    </Button>
                                 </InputGroupButton>
                                 <InputGroupAddon>
                                     <div className="ItemCount__count">{this.props.count}</div>
                                     <div className="ItemCount__subtle">{ this.props.label }</div>
                                 </InputGroupAddon>
                                 <InputGroupButton>
-                                    <Button onClick={this.down}>DN</Button>
+                                    <Button onClick={this.down} {...disabled}><FontAwesome name="chevron-down"/></Button>
                                 </InputGroupButton>
                             </InputGroup>
                         </Col>
