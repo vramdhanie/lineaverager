@@ -11,7 +11,7 @@ import Controls from "../Controls/controls";
 import Laps from "../Laps/laps";
 import {Container, Row, Col, Jumbotron} from 'reactstrap';
 
-class App extends Component {
+export class App extends Component {
 
   constructor(props){
       super(props);

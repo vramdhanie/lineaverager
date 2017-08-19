@@ -10,7 +10,7 @@ import FontAwesome from 'react-fontawesome';
 
 
 
-class ItemCount extends Component {
+export class ItemCount extends Component {
 
     constructor(props){
         super(props);

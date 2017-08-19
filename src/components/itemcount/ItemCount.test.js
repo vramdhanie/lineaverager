@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ItemCount from './ItemCount';
+import { ItemCount } from './ItemCount';
 
 it('should render without crashing', ()=>{
     let wrapper = shallow(<ItemCount/>);
