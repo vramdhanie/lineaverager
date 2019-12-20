@@ -1,68 +1,92 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Router } from 'react-router-dom';
-import createHistory from 'history/createBrowserHistory';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import styles from "./App.module.css";
+import { STATE, TICK } from "../../constants";
 import ItemCount from "../itemcount/ItemCount";
 import EstimatedTime from "../estimatedtime/estimatedtime";
 import Timer from "../Timer/timer";
-import Controls from "../Controls/controls";
 import Laps from "../Laps/laps";
-import {Container, Row, Col, Jumbotron} from 'reactstrap';
+import Header from "../header/header";
+import { Controls } from "../Controls/controls";
+import moment from "moment";
 
-export class App extends Component {
+export const App = props => {
+  // const controls = this.props.count > 0 ? <Controls /> : "";
+  // const eta = this.props.eta ? <EstimatedTime /> : "";
 
-  constructor(props){
-      super(props);
-      this.history = createHistory();
-  }
+  const [timerState, setTimerState] = useState(STATE.PAUSED);
+  const [timerId, setTimerId] = useState(null);
+  const [count, setCount] = useState(0);
+  const [laps, setLaps] = useState([]);
+  const [mean, setMean] = useState(0);
+  const [eta, setEta] = useState(0);
+  const [time, setTime] = useState(0);
 
-  render() {
-      const controls = this.props.count > 0?<Controls/>:'';
-      const eta = this.props.eta ? <EstimatedTime/>:'';
+  const onStart = () => {
+    if (timerState !== STATE.RUNNING) {
+      setTimerState(STATE.RUNNING);
+      setTimerId(setInterval(() => tick(), TICK));
+    }
+  };
 
-    return (
-        <Router history={this.history}>
-          <div className="App">
-            <Jumbotron>
-              <img src={logo} className="App-logo" alt="logo" />
-            </Jumbotron>
-              <Container>
-                  <Row>
-                      <Col>
-                        <ItemCount label="in queue"/>
-                      </Col>
-                  </Row>
-                  <Row>
-                      <Col>
-                        {eta}
-                      </Col>
-                  </Row>
-                  <Row>
-                      <Col>
-                        <Timer/>
-                      </Col>
-                  </Row>
-                  <Row>
-                      <Col>
-                        {controls}
-                      </Col>
-                  </Row>
-                  <Row>
-                      <Col>
-                        <Laps/>
-                      </Col>
-                  </Row>
-              </Container>
-          </div>
-        </Router>
-    );
-  }
-}
+  const tick = () => {
+    setTime(time => time + TICK);
+  };
 
-const mapStateToProps = (state, props) => {
-    return { ...state };
-}
+  const onStop = () => {
+    setTimerState(STATE.PAUSED);
+    clearInterval(timerId);
+  };
 
-export default connect(mapStateToProps)(App);
+  const onLap = () => {
+    if (timerState === STATE.RUNNING) {
+      let currentTime = time;
+      let previousTime = laps.length ? laps[laps.length - 1].time : 0;
+      let number = laps.length + 1;
+      setLaps([
+        ...laps,
+        {
+          time: currentTime,
+          duration: currentTime - previousTime,
+          number: number
+        }
+      ]);
+      setCount(count - 1);
+
+      const avg = currentTime / (laps.length + 1);
+      setMean(avg);
+
+      const wait = avg * (count - 1);
+      const eta = moment().add(wait, "ms");
+
+      setEta(eta);
+    }
+  };
+
+  const up = () => {
+    setCount(count + 1);
+  };
+
+  const down = () => {
+    setCount(count - 1);
+  };
+
+  return (
+    <div className={styles.App}>
+      <Header />
+      <ItemCount label="in queue" count={count} up={up} down={down} />
+      <EstimatedTime eta={eta} count={count} mean={mean} />
+
+      <Timer time={time} />
+
+      <Controls
+        onStart={onStart}
+        onStop={onStop}
+        onLap={onLap}
+        timerState={timerState}
+      />
+      <Laps laps={laps} />
+    </div>
+  );
+};
+
+export default App;
