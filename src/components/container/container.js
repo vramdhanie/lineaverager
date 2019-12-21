@@ -1,8 +1,12 @@
 import React from "react";
-import styles from "./container.module.css";
+import styled from "styled-components";
 
-export const Container = ({ children }) => {
-  return <div className={styles.container}>{children}</div>;
+export const Container = ({ children, className }) => {
+  return <div className={className}>{children}</div>;
 };
 
-export default Container;
+export default styled(Container)`
+  padding: 10px;
+  width: 95vw;
+  margin: 0 auto;
+`;

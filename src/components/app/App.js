@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import styles from "./App.module.css";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import { STATE, TICK } from "../../constants";
 import ItemCount from "../itemcount/ItemCount";
 import EstimatedTime from "../estimatedtime/estimatedtime";
 import Timer from "../Timer/timer";
 import Laps from "../Laps/laps";
 import Header from "../header/header";
-import { Controls } from "../Controls/controls";
+import Controls from "../Controls/controls";
 import moment from "moment";
 
-export const App = props => {
+export const App = ({ className }) => {
   // const controls = this.props.count > 0 ? <Controls /> : "";
   // const eta = this.props.eta ? <EstimatedTime /> : "";
 
@@ -20,6 +20,13 @@ export const App = props => {
   const [mean, setMean] = useState(0);
   const [eta, setEta] = useState(0);
   const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    if (count === 0) {
+      setTimerState(STATE.PAUSED);
+      clearInterval(timerId);
+    }
+  }, [count]);
 
   const onStart = () => {
     if (timerState !== STATE.RUNNING) {
@@ -50,7 +57,7 @@ export const App = props => {
           number: number
         }
       ]);
-      setCount(count - 1);
+      setCount(count > 0 ? count - 1 : count);
 
       const avg = currentTime / (laps.length + 1);
       setMean(avg);
@@ -67,26 +74,37 @@ export const App = props => {
   };
 
   const down = () => {
-    setCount(count - 1);
+    setCount(count > 0 ? count - 1 : count);
   };
 
   return (
-    <div className={styles.App}>
+    <div className={className}>
       <Header />
       <ItemCount label="in queue" count={count} up={up} down={down} />
-      <EstimatedTime eta={eta} count={count} mean={mean} />
+      {laps.length > 0 ? (
+        <EstimatedTime eta={eta} count={count} mean={mean} />
+      ) : (
+        ""
+      )}
+      {count > 0 ? (
+        <>
+          <Timer time={time} />
 
-      <Timer time={time} />
-
-      <Controls
-        onStart={onStart}
-        onStop={onStop}
-        onLap={onLap}
-        timerState={timerState}
-      />
+          <Controls
+            onStart={onStart}
+            onStop={onStop}
+            onLap={onLap}
+            timerState={timerState}
+          />
+        </>
+      ) : (
+        ""
+      )}
       <Laps laps={laps} />
     </div>
   );
 };
 
-export default App;
+export default styled(App)`
+  text-align: center;
+`;

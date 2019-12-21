@@ -36,15 +36,17 @@ export default styled(ItemCount)`
 
   .btn {
     flex: 1;
+    border-radius: 8px;
+    font-size: 1.5rem;
   }
 
   .count_box {
-    flex: 1;
+    flex: 2;
   }
 
   .subtle {
     font-weight: 300;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 
   .count {

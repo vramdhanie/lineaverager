@@ -12,6 +12,7 @@ export default styled(Laps)`
   width: 80%;
   max-width: 600px;
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
+  border-radius: 8px;
   margin: 0 auto;
+  margin-top: 10px;
 `;
