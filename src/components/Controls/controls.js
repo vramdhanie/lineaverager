@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-
 import styled from "styled-components";
-
 import { STATE } from "../../constants";
+import { MdStop, MdPlayCircleOutline } from "react-icons/md";
+import { GiStopwatch } from "react-icons/gi";
 
 export const Controls = ({ className, onStart, onStop, onLap, timerState }) => {
   const start_btn_state = {
@@ -13,13 +13,13 @@ export const Controls = ({ className, onStart, onStop, onLap, timerState }) => {
     <div className={className}>
       <div className="btn-group">
         <button {...start_btn_state} onClick={onStart}>
-          Start
+          <MdPlayCircleOutline />
         </button>
         <button {...lap_btn_state} onClick={onLap}>
-          Lap
+          <GiStopwatch />
         </button>
         <button {...lap_btn_state} onClick={onStop}>
-          Stop
+          <MdStop />
         </button>
       </div>
     </div>
@@ -28,8 +28,11 @@ export const Controls = ({ className, onStart, onStop, onLap, timerState }) => {
 
 export default styled(Controls)`
   margin: 0 auto;
-  width: 80%;
-  max-width: 600px;
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  background: var(--secondary);
 
   .controls .disable {
     color: #999999;
@@ -41,22 +44,33 @@ export default styled(Controls)`
 
   .btn-group {
     display: flex;
-    width: 300px;
+    width: 60%;
     margin: 0 auto;
+    justify-content: space-around;
+    padding: 10px;
   }
 
   .btn-group button {
-    flex: 1;
     font-size: 1.2rem;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--primaryLight);
+    color: var(--primaryDark);
+    border: none;
+    transition: var(--mainTransition);
   }
 
-  .btn-group button:first-child {
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
+  .btn-group button:hover:enabled {
+    box-shadow: var(--lightShadow);
+    background: var(--primaryDark);
+    color: var(--primaryLight);
   }
 
-  .btn-group button:last-child {
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
+  .btn-group button:disabled {
+    filter: grayscale(80%);
   }
 `;
