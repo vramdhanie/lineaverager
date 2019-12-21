@@ -1,65 +1,56 @@
-import React, { Component } from 'react';
-import './ItemCount.css';
-import {connect} from "react-redux";
-import { incrementCount, decrementCount } from "../../actions/index";
-import {
-    Container, Row, Col, Button, InputGroup, InputGroupButton,
-    InputGroupAddon
-} from 'reactstrap';
-import FontAwesome from 'react-fontawesome';
+import React, { Component } from "react";
+import Container from "../container/container";
+import { FaChevronUp, FaChevronDown } from "react-icons/fa";
+import styled from "styled-components";
 
+export const ItemCount = ({ className, count = 0, label, up, down }) => {
+  const disabled = { disabled: count === 0 };
 
+  return (
+    <Container>
+      <div className={className}>
+        <button onClick={up} className="btn">
+          <FaChevronUp />
+        </button>
 
-export class ItemCount extends Component {
+        <div className="count_box">
+          <div className="count">{count}</div>
+          <div className="subtle">{label}</div>
+        </div>
 
-    constructor(props){
-        super(props);
-        this.up = this.up.bind(this);
-        this.down = this.down.bind(this);
-    }
+        <button onClick={down} {...disabled} className="btn">
+          <FaChevronDown />
+        </button>
+      </div>
+    </Container>
+  );
+};
 
-    up(){
-        this.props.dispatch( incrementCount() );
-    }
+export default styled(ItemCount)`
+  display: flex;
+  width: 180px;
+  margin: 0 auto;
+  border-radius: 4px;
+  box-shadow: var(--lightBorder);
+  padding: 5px;
 
-    down(){
-        this.props.dispatch( decrementCount() );
-    }
+  .btn {
+    flex: 1;
+    border-radius: 8px;
+    font-size: 1.5rem;
+  }
 
-    render() {
+  .count_box {
+    flex: 2;
+  }
 
-        const disabled = {disabled:this.props.count === 0};
+  .subtle {
+    font-weight: 300;
+    font-size: 0.7rem;
+  }
 
-        return (
-            <div className="ItemCount">
-                <Container>
-                    <Row noGutters>
-                        <Col md={{size:4, offset: 4}}>
-                            <InputGroup>
-                                <InputGroupButton>
-                                    <Button onClick={this.up}>
-                                        <FontAwesome name="chevron-up"/>
-                                    </Button>
-                                </InputGroupButton>
-                                <InputGroupAddon>
-                                    <div className="ItemCount__count">{this.props.count}</div>
-                                    <div className="ItemCount__subtle">{ this.props.label }</div>
-                                </InputGroupAddon>
-                                <InputGroupButton>
-                                    <Button onClick={this.down} {...disabled}><FontAwesome name="chevron-down"/></Button>
-                                </InputGroupButton>
-                            </InputGroup>
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-        );
-    }
-}
-
-const mapStateToProps = (state) => ({
-  count: state.count
-})
-
-
-export default connect(mapStateToProps)(ItemCount);
+  .count {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+`;

@@ -1,85 +1,76 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { STATE } from "../../constants";
+import { MdStop, MdPlayCircleOutline } from "react-icons/md";
+import { GiStopwatch } from "react-icons/gi";
 
-import './controls.css';
-import {
-    incrementTime,
-    startTimer,
-    stopTimer,
-    lap,
-    decrementCount,
-    setMean,
-    setEta
-    } from "../../actions/index";
-import { STATE } from '../../reducers/index';
-import moment from 'moment';
-import {Button, ButtonGroup} from 'reactstrap';
+export const Controls = ({ className, onStart, onStop, onLap, timerState }) => {
+  const start_btn_state = {
+    disabled: timerState === STATE.RUNNING
+  };
+  const lap_btn_state = { disabled: timerState !== STATE.RUNNING };
+  return (
+    <div className={className}>
+      <div className="btn-group">
+        <button {...start_btn_state} onClick={onStart}>
+          <MdPlayCircleOutline />
+        </button>
+        <button {...lap_btn_state} onClick={onLap}>
+          <GiStopwatch />
+        </button>
+        <button {...lap_btn_state} onClick={onStop}>
+          <MdStop />
+        </button>
+      </div>
+    </div>
+  );
+};
 
-export class Controls extends Component {
-    constructor(props){
-        super(props);
-        this.onStart = this.onStart.bind(this);
-        this.onStop = this.onStop.bind(this);
-        this.onLap = this.onLap.bind(this);
-    }
+export default styled(Controls)`
+  margin: 0 auto;
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  background: var(--secondary);
 
-    onStart(){
-        if(this.props.timer_state !== STATE.RUNNING) {
-            this.props.dispatch(startTimer());
-            this.timerId = setInterval(() => this.tick(), 30);
-        }
-    }
+  .controls .disable {
+    color: #999999;
+  }
 
-    onStop(){
-        this.props.dispatch( stopTimer() );
-        clearInterval(this.timerId);
-    }
+  .controls .disable:hover {
+    text-shadow: 0px 1px 1px #3d768a;
+  }
 
-    onLap(){
-        if(this.props.timer_state === STATE.RUNNING) {
-            let currentTime = this.props.time;
-            let previousTime = this.props.laps.length?this.props.laps[this.props.laps.length - 1].time:0;
-            let number = this.props.laps.length + 1;
-            this.props.dispatch(lap({time:currentTime, duration:currentTime - previousTime, number: number}));
-            this.props.dispatch( decrementCount() );
+  .btn-group {
+    display: flex;
+    width: 60%;
+    margin: 0 auto;
+    justify-content: space-around;
+    padding: 10px;
+  }
 
-            const avg = currentTime / (this.props.laps.length + 1);
-            this.props.dispatch( setMean(avg) );
+  .btn-group button {
+    font-size: 1.2rem;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--primaryLight);
+    color: var(--primaryDark);
+    border: none;
+    transition: var(--mainTransition);
+  }
 
-            const wait = avg * (this.props.count - 1);
-            const eta = moment().add(wait, 'ms');
+  .btn-group button:hover:enabled {
+    box-shadow: var(--lightShadow);
+    background: var(--primaryDark);
+    color: var(--primaryLight);
+  }
 
-            this.props.dispatch( setEta(eta) );
-
-        }
-    }
-
-    componentWillUnmount(){
-        this.props.dispatch( stopTimer() );
-        clearInterval(this.timerId);
-    }
-
-    tick(){
-        this.props.dispatch( incrementTime(this.props.time + 30) );
-    }
-
-    render(){
-        const start_btn_state = {disabled: this.props.timer_state === STATE.RUNNING};
-        const lap_btn_state = {disabled: this.props.timer_state !== STATE.RUNNING};
-        return (
-            <div className="controls">
-                <ButtonGroup size="lg">
-                  <Button {...start_btn_state} onClick={this.onStart}>Start</Button>
-                  <Button {...lap_btn_state} onClick={this.onLap}>Lap</Button>
-                  <Button {...lap_btn_state} onClick={this.onStop}>Stop</Button>
-                </ButtonGroup>
-            </div>
-        )
-    }
-}
-
-const mapStateToProps = (state) => ({
-    ...state
-});
-
-export default connect(mapStateToProps)(Controls);
+  .btn-group button:disabled {
+    filter: grayscale(80%);
+  }
+`;

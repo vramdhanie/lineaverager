@@ -1,30 +1,31 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import moment from 'moment';
+import React, { Component } from "react";
+import moment from "moment";
+import styled from "styled-components";
+import Container from "../container/container";
 
-import './timer.css';
+export const Timer = ({ className, time }) => {
+  return (
+    <Container>
+      <div className={className}>
+        <div className="timer__time">{moment(time).format("mm:ss:SS")}</div>
+      </div>
+    </Container>
+  );
+};
 
-export class Timer extends Component {
-    render(){
-        return (
-            <div className="timer">
-                <div className="timer__time">{moment(this.props.time).format('mm:ss:SS')}</div>
-            </div>
-        )
-    }
+export default styled(Timer)`
+  flex: 1;
 
-    componentDidMount(){
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin: 0 auto;
+  margin-top: 5px;
+  width: 80%;
+  max-width: 600px;
 
-    }
-
-    componentWillUnmount(){
-
-    }
-
-}
-
-const mapStateToProps = state => ({
-    time: state.time
-});
-
-export default connect(mapStateToProps)(Timer);
+  .timer__time {
+    font-size: 3em;
+    font-weight: bold;
+    color: var(--primaryDark);
+  }
+`;
